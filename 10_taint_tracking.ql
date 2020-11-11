@@ -14,7 +14,7 @@ class NetworkBySwap extends Expr {
 class Config extends TaintTracking::Configuration {
   Config() { this = "Config: this name doesn't matter" }
 
-  override predicate isSource(DataFlow::Node source) { source.asExpr() instanceof NetworkByteSwap }
+  override predicate isSource(DataFlow::Node source) { source.asExpr() instanceof NetworkBySwap }
 
   override predicate isSink(DataFlow::Node sink) {
     exists(FunctionCall c | c.getTarget().getName() = "memcpy" and sink.asExpr() = c.getArgument(2))
